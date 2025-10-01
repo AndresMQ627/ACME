@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('zonas', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre_zona');
-            $table->string('descripcion');
-            $table->timestamps();
+        Schema::create('planos', function(Blueprint $table){
+        $table->id();
+        $table->foreignId('proyecto_id')->constrained('proyectos');
+        $table->string('nombre_plano');
+        $table->string('descripcion');
+        $table->string('version');
+        $table->timestamps();
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('zonas');
+       Schema::dropIfExists('planos');
     }
 };
